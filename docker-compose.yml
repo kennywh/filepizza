@@ -2,26 +2,29 @@ services:
   redis:
     image: redis:latest
     ports:
-      - 6379:6379
+      - 127.0.0.1:6379:6379
     networks:
-      - filepizza
+      - fileshare
     volumes:
       - redis_data:/data
-  filepizza:
+  fileshare:
     build: .
-    image: kern/filepizza:latest
+    image: kennychau/fileshare:latest
     ports:
-      - 8080:8080
+      - 0.0.0.0:8822:80
     environment:
-      - PORT=8080
+      - PORT=80
       - REDIS_URL=redis://redis:6379
+      - COTURN_ENABLED=false
     networks:
-      - filepizza
+      - fileshare
     depends_on:
       - redis
+    env_file:
+      - .env
 
 networks:
-  filepizza:
+  fileshare:
     driver: bridge
 
 volumes:

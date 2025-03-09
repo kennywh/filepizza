@@ -9,7 +9,7 @@ services:
       - redis_data:/data
   fileshare:
     build: .
-    image: kern/filepizza:latest
+    image: kennychau/fileshare:latest
     ports:
       - 0.0.0.0:8822:80
     environment:
