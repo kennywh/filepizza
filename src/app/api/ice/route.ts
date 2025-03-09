@@ -7,7 +7,7 @@ const turnHost = process.env.TURN_HOST || '127.0.0.1'
 export async function POST(): Promise<NextResponse> {
   if (!process.env.COTURN_ENABLED) {
     return NextResponse.json({
-      iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
+      iceServers: [{ urls: 'stun:stun.cloudflare.com:3478' }],
     })
   }
 
@@ -21,7 +21,7 @@ export async function POST(): Promise<NextResponse> {
 
   return NextResponse.json({
     iceServers: [
-      { urls: 'stun:stun.l.google.com:19302' },
+      { urls: 'stun:stun.cloudflare.com:3478' },
       {
         urls: [`turn:${turnHost}:3478`, `turns:${turnHost}:5349`],
         username,

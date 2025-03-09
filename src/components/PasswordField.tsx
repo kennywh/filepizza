@@ -37,6 +37,7 @@ export default function PasswordField({
         } bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100`}
         placeholder="Enter a secret password for this slice of FilePizza..."
         value={value}
+        required={isRequired}
         onChange={handleChange}
       />
     </div>

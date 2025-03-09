@@ -9,7 +9,6 @@ import PasswordField from '../components/PasswordField'
 import StartButton from '../components/StartButton'
 import { UploadedFile } from '../types'
 import Spinner from '../components/Spinner'
-import Wordmark from '../components/Wordmark'
 import CancelButton from '../components/CancelButton'
 import { useMemo } from 'react'
 import { getFileName } from '../fs'
@@ -21,7 +20,6 @@ function PageWrapper({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <div className="flex flex-col items-center space-y-5 py-10 max-w-2xl mx-auto px-4">
       <Spinner direction="up" />
-      <Wordmark />
       {children}
     </div>
   )
@@ -35,7 +33,6 @@ function InitialState({
   return (
     <PageWrapper>
       <div className="flex flex-col items-center space-y-1 max-w-md">
-        <TitleText>Peer-to-peer file transfers in your browser.</TitleText>
       </div>
       <DropZone onDrop={onDrop} />
       <TermsAcceptance />
@@ -75,7 +72,7 @@ function ConfirmUploadState({
         {pluralize(uploadedFiles.length, 'file', 'files')}.
       </TitleText>
       <UploadFileList files={fileListData} onRemove={onRemoveFile} />
-      <PasswordField value={password} onChange={onChangePassword} />
+      <PasswordField value={password} onChange={onChangePassword} isRequired />
       <div className="flex space-x-4">
         <CancelButton onClick={onCancel} />
         <StartButton onClick={onStart} />
@@ -121,6 +118,12 @@ export default function UploadPage(): JSX.Element {
   }, [])
 
   const handleStart = useCallback(() => {
+    // validate password
+    console.log('password', password)
+    if (password.length <= 0) {
+      alert('Password must be provided')
+      return
+    }
     setUploading(true)
   }, [])
 

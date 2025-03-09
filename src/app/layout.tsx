@@ -7,17 +7,7 @@ import FilePizzaQueryClientProvider from '../components/QueryClientProvider'
 import { Viewport } from 'next'
 import { ViewTransitions } from 'next-view-transitions'
 
-export const metadata = {
-  title: 'FilePizza • Your files, delivered.',
-  description: 'Peer-to-peer file transfers in your web browser.',
-  charSet: 'utf-8',
-  openGraph: {
-    url: 'https://file.pizza',
-    title: 'FilePizza • Your files, delivered.',
-    description: 'Peer-to-peer file transfers in your web browser.',
-    images: [{ url: 'https://file.pizza/images/fb.png' }],
-  },
-}
+
 
 export const viewport: Viewport = {
   width: 'device-width',
