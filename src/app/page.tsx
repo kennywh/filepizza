@@ -125,7 +125,7 @@ export default function UploadPage(): JSX.Element {
       return
     }
     setUploading(true)
-  }, [])
+  }, [password])
 
   const handleStop = useCallback(() => {
     setUploading(false)
